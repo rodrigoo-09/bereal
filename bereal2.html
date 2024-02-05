@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador BeReal</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #contador {
+            font-size: 36px;
+        }
+
+        body::before {
+            content: "BeReal.";
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            right: 5%;
+            bottom: 10%;
+            opacity: 0.1; /* Ajusta la opacidad según tus preferencias */
+            font-size: 100px; /* Ajusta el tamaño de la fuente según tus preferencias */
+            line-height: 1;
+            z-index: -1; /* Para que esté detrás del contenido principal */
+            pointer-events: none; /* Evita que afecte a la interactividad */
+        }
+
+       
+    </style>
+</head>
+<body>
+    <h1>⚠️Es hora del BeReal.⚠️</h1>
+    <div id="contador">3:00</div>
+
+    <script>
+        var tiempoRestante = 180;
+
+        function actualizarContador() {
+            var minutos = Math.floor(tiempoRestante / 60);
+            var segundos = tiempoRestante % 60;
+
+            minutos = minutos < 10 ? "0" + minutos : minutos;
+            segundos = segundos < 10 ? "0" + segundos : segundos;
+
+            document.getElementById("contador").innerText = minutos + ":" + segundos;
+
+            if (tiempoRestante > 0) {
+                tiempoRestante--;
+                setTimeout(actualizarContador, 1000);
+            }
+        }
+
+        window.onload = function () {
+            actualizarContador();
+        };
+    </script>
+</body>
+</html>
